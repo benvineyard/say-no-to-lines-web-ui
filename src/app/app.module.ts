@@ -3,11 +3,13 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
+import { CheckInService } from './@core/data/checkin.service';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './@core/core.module';
 
 import { AppComponent } from './app.component';
@@ -21,6 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
 
     NgbModule.forRoot(),
@@ -28,7 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CoreModule.forRoot(),
   ],
   bootstrap: [AppComponent],
-  providers: [
+  providers: [ CheckInService,
     { provide: APP_BASE_HREF, useValue: '/' },
   ],
 })

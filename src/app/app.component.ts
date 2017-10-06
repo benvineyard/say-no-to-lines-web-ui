@@ -6,6 +6,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './@core/utils/analytics.service';
 
+// Botvana Custom Services
+import { CheckInService } from './@core/data/checkIn.service';
+
+
 @Component({
   selector: 'ngx-app',
   template: '<router-outlet></router-outlet>',
