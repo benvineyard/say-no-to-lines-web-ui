@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>Guest Check-In</nb-card-header>
+      <nb-card-body>
+        <toaster-container [toasterconfig]="config"></toaster-container>
+        <form #checkInForm="ngForm">
+          <div class="form-group">
+            <!--<input id="mobilePhoneNumber" formControlName="mobilePhoneNumber" type="text" [(ngModel)]="checkIn.mobilePhoneNumber" placeholder="Mobile Phone Number" mdInput required class="form-control"/>-->
+            <input id="mobilePhoneNumber" class="form-control" name="mobilePhoneNumber" type="text" [(ngModel)]="checkIn.mobilePhoneNumber" placeholder="Mobile Phone Number" required/>
+          </div>
+          <div class="input-group">
+            <!--<input id="partySize" formControlName="partySize" type="text" [(ngModel)]="checkIn.partySize" placeholder="Number of Guests in Party" mdInput required class="form-control"/>-->
+            <input id="partySize" name="partySize" type="text" [(ngModel)]="checkIn.partySize" placeholder="Number of Guests in Party" mdInput required class="form-control"/>
+          </div>
+          <br />
+          <button type="submit" class="btn btn-primary" (click)="save()" [disabled]="buttonSubmitted || !checkInForm.form.valid" ng-disabled="buttonSubmitted || !checkInForm.form.valid">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

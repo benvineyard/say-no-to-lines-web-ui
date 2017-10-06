@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { BodyOutputType, Toast, ToasterConfig, ToasterModule, ToasterService } from 'angular2-toaster';
 import 'style-loader!angular2-toaster/toaster.css';
 
@@ -12,10 +11,10 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'ngx-form-inputs',
-  styleUrls: ['./form-inputs.component.scss'],
-  templateUrl: './form-inputs.component.html',
+  styleUrls: ['./mobile-phone-number.component.scss'],
+  templateUrl: './mobile-phone-number.component.html',
 })
-export class FormInputsComponent implements OnInit {
+export class MobilePhoneNumberComponent implements OnInit {
 
   public starRate: number = 2;
   public heartRate: number = 4;
@@ -39,72 +38,29 @@ export class FormInputsComponent implements OnInit {
     });
   }
 
-  config: ToasterConfig;
-
-  position: string = 'toast-top-right';
-  animationType: string = 'fade';
-  title: string = 'HI there!';
-  content: string = `I'm cool toaster!`;
-  timeout: number = 5000;
-  toastsLimit: number = 5;
-  type: string = 'default';
-
-  isNewestOnTop: boolean = true;
-  isHideOnClick: boolean = true;
-  isDuplicatesPrevented: boolean = false;
-  isCloseButton: boolean = true;
-
-  types: string[] = ['default', 'info', 'success', 'warning', 'error'];
-  animations: string[] = ['fade', 'flyLeft', 'flyRight', 'slideDown', 'slideUp'];
-  positions: string[] = ['toast-top-full-width', 'toast-bottom-full-width', 'toast-top-left', 'toast-top-center',
-    'toast-top-right', 'toast-bottom-right', 'toast-bottom-center', 'toast-bottom-left', 'toast-center'];
-
-  quotes = [
-    { title: null, body: 'We rock at <i>Angular</i>' },
-    { title: null, body: 'Titles are not always needed' },
-    { title: null, body: 'Toastr rock!' },
-    { title: 'What about nice html?', body: '<b>Sure you <em>can!</em></b>' },
-  ];
-
-  makeToast() {
-    this.showToast(this.type, this.title, this.content);
-  }
-
-  openRandomToast () {
-    const typeIndex = Math.floor(Math.random() * this.types.length);
-    const quoteIndex = Math.floor(Math.random() * this.quotes.length);
-    const type = this.types[typeIndex];
-    const quote = this.quotes[quoteIndex];
-
-    this.showToast(type, quote.title, quote.body);
-  };
+  public config = new ToasterConfig({
+      positionClass: 'toast-top-right',
+      timeout: 5000,
+      newestOnTop: true,
+      tapToDismiss: true,
+      preventDuplicates: false,
+      animation: 'default',
+      limit: 5,
+  });
 
   private showToast(type: string, title: string, body: string) {
-    this.config = new ToasterConfig({
-      positionClass: this.position,
-      timeout: this.timeout,
-      newestOnTop: this.isNewestOnTop,
-      tapToDismiss: this.isHideOnClick,
-      preventDuplicates: this.isDuplicatesPrevented,
-      animation: this.animationType,
-      limit: this.toastsLimit,
-    });
     const toast: Toast = {
       type: type,
       title: title,
       body: body,
-      timeout: this.timeout,
-      showCloseButton: this.isCloseButton,
+      timeout: 5000,
+      showCloseButton: true,
       bodyOutputType: BodyOutputType.TrustedHtml,
     };
     this.toasterService.popAsync(toast);
   }
 
-  clearToasts() {
-    this.toasterService.clear();
-  }
-
-  save(model: ICheckIn) {
+  public save() {
     this.buttonSubmitted = true;
 
       this.submitted = true; // set form submit to true
@@ -114,15 +70,13 @@ export class FormInputsComponent implements OnInit {
       let checkInOperation: Observable<CheckIn>;
 
       // format model
-      model.mobilePhoneNumber = model.mobilePhoneNumber.replace('+1', '')
+      this.checkIn.mobilePhoneNumber = this.checkIn.mobilePhoneNumber.replace('+1', '')
         .replace('-', '')
         .replace('(', '')
         .replace(')', '')
         .replace('.', '')	// (e.g. +17025551212) Modify the mobilePhoneNumber to be in the format that Twilio expects.
 
-      checkInOperation = this.checkInService.saveCheckIn(model);
-      // console.log('checkInOpertation', checkInOperation);
-      // console.log(model, isValid);
+      checkInOperation = this.checkInService.saveCheckIn(this.checkIn);
 
       // Subscribe to observable
       checkInOperation.subscribe(
@@ -130,19 +84,19 @@ export class FormInputsComponent implements OnInit {
           // Emit list event
           EmitterService.get(this.listId).emit(checkIn);
           // Empty model
-          model = <ICheckIn> {
+          this.checkIn = <ICheckIn> {
               guestRewardCardId: null,
               mobilePhoneNumber: null,
               partySize: null,
           };
-          // this.responseText = 'Success!';
+          this.showToast('info', 'Reservation Saved Successfully', '');
           this.buttonSubmitted = false;
         },
         (err) => {
           // Log errors if any
           // console.log(err);
           this.buttonSubmitted = false;
-          // this.errorText = err.message;
+          this.showToast('error', 'Reservation Save Error', err.message);
         });
     }
 }

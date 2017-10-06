@@ -6,7 +6,7 @@ export class CheckIn {
 };
 
 export interface ICheckIn {
-	partySize: string;
+	partySize: number;
 	guestRewardCardId?: string;
 	mobilePhoneNumber?: string;
 }

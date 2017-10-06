@@ -11,22 +11,24 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './@core/core.module';
-
+import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CheckinModule } from './pages/checkin/checkin.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ToasterModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-
+    CheckinModule,
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),

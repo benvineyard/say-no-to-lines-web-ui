@@ -13,7 +13,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Mobile Phone Number',
-        link: '/pages/forms/inputs',
+        link: '/pages/checkin/mobile-phone-number',
       },
       {
         title: 'Reward Card',

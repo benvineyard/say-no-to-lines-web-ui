@@ -3,16 +3,18 @@
     <nb-card>
       <nb-card-header>Guest Check-In</nb-card-header>
       <nb-card-body>
-        <form #checkInForm="ngForm" [formGroup]="checkInForm">
+        <toaster-container [toasterconfig]="config"></toaster-container>
+        <!--<form [formGroup]="checkInForm">-->
           <div class="input-group">
-            <input id="mobilePhoneNumber" formControlName="mobilePhoneNumber" type="text" placeholder="Mobile Phone Number" mdInput required class="form-control"/>
+            <input id="mobilePhoneNumber" formControlName="mobilePhoneNumber" type="text" [(ngModel)]="checkIn.mobilePhoneNumber" placeholder="Mobile Phone Number" mdInput required class="form-control"/>
           </div>
           <div class="input-group">
-            <input id="partySize" formControlName="partySize" type="text" placeholder="Number of Guests in Party" mdInput required class="form-control"/>
+            <input id="partySize" formControlName="partySize" type="text" [(ngModel)]="checkIn.partySize" placeholder="Number of Guests in Party" mdInput required class="form-control"/>
           </div>
           <br />
-          <button type="submit" class="btn btn-primary" ng-disabled="buttonSubmitted">Submit</button>
-        </form>
+          <!--<button type="submit" class="btn btn-primary" ng-disabled="buttonSubmitted || !checkInForm.form.valid">Submit</button>-->
+          <button type="submit" class="btn btn-primary" (click)="openRandomToast()">Submit</button>
+        <!--</form>-->
       </nb-card-body>
     </nb-card>
   </div>
