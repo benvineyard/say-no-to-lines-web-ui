@@ -24,9 +24,9 @@ export class CheckInService {
 	// Fetch all existing comments
 	saveCheckIn(body: ICheckIn): Observable<CheckIn> {
 
-		let bodyString = JSON.stringify(body); // Stringify payload
-		let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-		let options = new RequestOptions({ headers }); // Create a request option
+		const bodyString = JSON.stringify(body); // Stringify payload
+		const headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+		const options = new RequestOptions({ headers }); // Create a request option
 
 		// ...using POST request
 		return this.http.post(this.checkInSvcRemoteUrl, body, options)

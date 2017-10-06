@@ -1,7 +1,7 @@
 // tslint:disable:indent eofline
 export class CheckIn {
 	constructor(
-		public checkIn: ICheckIn
+		public checkIn: ICheckIn,
 	) { }
 };
 

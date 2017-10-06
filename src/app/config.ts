@@ -20,7 +20,7 @@ function makeAppConfig() {
 		getReservationQueueSvcRemoteUrl: 'https://reservation.saynotolines.com/v1/buffet/peek',
 		finalizeReservationsSvcRemoteUrl: 'https://reservation.saynotolines.com/v1/buffet/complete',
 		mgmBuffetGuestsListName: `mgmBuffetGuests`,
-		mgmBuffetGuestsGetQueueCount: 10
+		mgmBuffetGuestsGetQueueCount: 10,
 	};
 
 	return AppConfig;

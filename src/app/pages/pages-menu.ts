@@ -33,5 +33,5 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/components/notifications',
       },
     ],
-  }
+  },
 ];
