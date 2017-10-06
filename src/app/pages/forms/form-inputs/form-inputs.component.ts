@@ -14,10 +14,11 @@ export class FormInputsComponent {
 
 	public starRate: number = 2;
 	public heartRate: number = 4;
-	public checkInForm: FormGroup; // our model driven form
+	// public checkInForm: FormGroup; // our model driven form
 	public submitted: boolean; // keep track on whether form is submitted
 
-	constructor(private _fb: FormBuilder, private checkInService: CheckInService) { };
+	// constructor(private _fb: FormBuilder, private checkInService: CheckInService) { };
+	constructor(private checkInService: CheckInService) { };
 
 	@Input() listId: string;
 	@Output() buttonSubmitted: boolean = false;
@@ -25,10 +26,10 @@ export class FormInputsComponent {
 	ngOnInit() {
 		// we will initialize our form model here
 		// the short way
-		this.checkInForm = this._fb.group({
-			partySize: ['', [<any>Validators.required]],
-			mobilePhoneNumber: ['', [<any>Validators.required]]
-		});
+		// this.checkInForm = this._fb.group({
+		// 	partySize: ['', [<any>Validators.required]],
+		// 	mobilePhoneNumber: ['', [<any>Validators.required]]
+		// });
 	}
 	
 	save(model: ICheckIn) {
