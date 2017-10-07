@@ -62,19 +62,23 @@ export class GuestsQueueComponent implements OnInit {
     columns: {
       mobilePhoneNumber: {
         title: 'Mobile Number',
-        type: 'string',
+        type: 'text',
+      },
+      guestRewardCardId: {
+        title: 'Card Id',
+        type: 'text',
       },
       partySize: {
         title: 'Party Size',
-        type: 'number',
+        type: 'text',
       },
       createdAt: {
         title: 'Created',
-        type: 'date',
+        type: 'text',
       },
       lastNotificationSent: {
         title: 'Last Sent',
-        type: 'date',
+        type: 'text',
       },
     },
   };
