@@ -6,7 +6,7 @@
         <toaster-container [toasterconfig]="config"></toaster-container>
         <form #checkInForm="ngForm">
           <div class="form-group">
-            <input id="mobilePhoneNumber" class="form-control" name="rewardCardId" type="text" [(ngModel)]="checkIn.guestRewardCardId" placeholder="Reward Card Id" required/>
+            <input #input id="mobilePhoneNumber" class="form-control" name="rewardCardId" type="text" [(ngModel)]="checkIn.guestRewardCardId" placeholder="Reward Card Id" required/>
           </div>
           <div class="input-group">
             <input id="partySize" name="partySize" type="text" [(ngModel)]="checkIn.partySize" placeholder="Number of Guests in Party" mdInput required class="form-control"/>

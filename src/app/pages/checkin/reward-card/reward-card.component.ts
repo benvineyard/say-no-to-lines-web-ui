@@ -5,7 +5,18 @@ import { inherits } from 'util';
 import { EmitterService } from '../../../emitter.service';
 import { CheckIn, ICheckIn } from '../../../@core/models/checkIn.model';
 import { CheckInService } from '../../../@core/data/checkin.service';
-import { Component, Input, NgModule, OnInit, Output } from '@angular/core';
+import {
+    AfterContentInit,
+    AfterViewChecked,
+    AfterViewInit,
+    Component,
+    ContentChild,
+    Input,
+    OnInit,
+    Output,
+    ViewChild,
+    ViewChildren,
+} from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
@@ -14,7 +25,16 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./reward-card.component.scss'],
   templateUrl: './reward-card.component.html',
 })
-export class RewardCardComponent implements OnInit {
+export class RewardCardComponent implements OnInit, AfterViewInit, AfterViewChecked {
+
+  @ViewChildren('input') vc;
+
+   ngAfterViewInit() {
+        this.vc.first.nativeElement.focus();
+   }
+
+   ngAfterViewChecked() {
+   }
 
   public checkInForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
