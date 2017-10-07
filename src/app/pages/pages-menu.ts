@@ -27,7 +27,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Guest Queue',
-        link: '/pages/tables/smart-table',
+        link: '/pages/notifications/guest-queue',
       }, {
         title: 'Estimated Wait Time',
         link: '/pages/components/notifications',

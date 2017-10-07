@@ -3,6 +3,7 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
+import { QueuedGuestsService } from './@core/data/notifications.service';
 import { CheckInService } from './@core/data/checkin.service';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CheckinModule } from './pages/checkin/checkin.module';
+import { NotificationsModule } from './pages/notifications/notifications.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,12 +31,15 @@ import { CheckinModule } from './pages/checkin/checkin.module';
     ReactiveFormsModule,
     AppRoutingModule,
     CheckinModule,
+    NotificationsModule,
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
   ],
   bootstrap: [AppComponent],
-  providers: [ CheckInService,
+  providers: [
+    CheckInService,
+    QueuedGuestsService,
     { provide: APP_BASE_HREF, useValue: '/' },
   ],
 })

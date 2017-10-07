@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-components',
+  selector: 'ngx-notifications-guest-queue',
   template: `
     <router-outlet></router-outlet>
   `,
 })
-export class ComponentsComponent {
+export class NotificationsComponent {
 }
