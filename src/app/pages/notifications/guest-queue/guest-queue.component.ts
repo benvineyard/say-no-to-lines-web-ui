@@ -9,6 +9,8 @@ import { EmitterService } from '../../../emitter.service';
 import { Component, Input, NgModule, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import * as phoneFormatter from 'node-phone-formatter';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'ngx-form-inputs',
@@ -96,31 +98,10 @@ export class GuestsQueueComponent implements OnInit {
               this.guestsInQueue = questsInQueue;
 
               for (const guest of this.guestsInQueue) {
-                  const originalNumber = String(guest.mobilePhoneNumber).replace('+', '').replace('1', '');
-
-                  // Will return formattedNumber.
-                  // If phonenumber isn't longer than an area code, just show number
-                  let formattedNumber = originalNumber;
-
-                  // if the first character is '1', strip it out and add it back
-                  const c = '';
-                  // originalNumber = originalNumber[0] === '1' ? originalNumber.slice(1) : originalNumber;
-
-                  // # (###) ###-#### as c (area) front-end
-                  const area = originalNumber.substring(0, 3);
-                  const front = originalNumber.substring(3, 6);
-                  const end = originalNumber.substring(6, 10);
-
-                  if (front) {
-                      // tslint:disable-next-line:quotemark
-                      formattedNumber = (c + "(" + area + ") " + front);
-                  }
-                  if (end) {
-                      formattedNumber += ('-' + end);
-                  }
-
-                  guest.mobilePhoneNumber = formattedNumber;
+                  const normalizedNumber = phoneFormatter.normalize(guest.mobilePhoneNumber);
+                  guest.mobilePhoneNumber = phoneFormatter.format(normalizedNumber, '(NNN) NNN-NNNN')
                   guest.markedForNotification = false;
+                  guest.createdAt = guest.createdAt = moment().tz('America/Los_Angeles').format('M/d/YYYY h:m A');
                }
 
                this.source.load(this.guestsInQueue);
