@@ -17,7 +17,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Reward Card',
-        link: '/pages/forms/layouts',
+        link: '/pages/checkin/reward-card',
       },
     ],
   },

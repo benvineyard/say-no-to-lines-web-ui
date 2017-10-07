@@ -5,36 +5,16 @@ import { inherits } from 'util';
 import { EmitterService } from '../../../emitter.service';
 import { CheckIn, ICheckIn } from '../../../@core/models/checkIn.model';
 import { CheckInService } from '../../../@core/data/checkin.service';
-import {
-    AfterContentInit,
-    AfterViewChecked,
-    AfterViewInit,
-    Component,
-    ContentChild,
-    Input,
-    OnInit,
-    Output,
-    ViewChild,
-    ViewChildren,
-} from '@angular/core';
+import { Component, Input, NgModule, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'ngx-form-inputs',
-  styleUrls: ['./mobile-phone-number.component.scss'],
-  templateUrl: './mobile-phone-number.component.html',
+  styleUrls: ['./reward-card.component.scss'],
+  templateUrl: './reward-card.component.html',
 })
-export class MobilePhoneNumberComponent implements OnInit, AfterViewInit, AfterViewChecked {
-
-  @ViewChildren('input') vc;
-
-   ngAfterViewInit() {
-        this.vc.first.nativeElement.focus();
-   }
-
-   ngAfterViewChecked() {
-   }
+export class RewardCardComponent implements OnInit {
 
   public checkInForm: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
@@ -86,13 +66,6 @@ export class MobilePhoneNumberComponent implements OnInit, AfterViewInit, AfterV
       // check if model is valids
       // if valid, call API to save customer
       let checkInOperation: Observable<CheckIn>;
-
-      // format model
-      this.checkIn.mobilePhoneNumber = this.checkIn.mobilePhoneNumber.replace('+1', '')
-        .replace('-', '')
-        .replace('(', '')
-        .replace(')', '')
-        .replace('.', '')	// (e.g. +17025551212) Modify the mobilePhoneNumber to be in the format that Twilio expects.
 
       checkInOperation = this.checkInService.saveCheckIn(this.checkIn);
 
