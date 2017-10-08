@@ -114,4 +114,6 @@ export class GuestsQueueComponent implements OnInit {
             this.showToast('error', 'Guest Queue Retrieve Error', error.message);
         }
     }
+
+    public onDeleteConfirm(event: any) {}
 }
