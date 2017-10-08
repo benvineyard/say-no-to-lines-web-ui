@@ -23,7 +23,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Notification',
-    icon: 'fa fa-mobile',
+    icon: 'ion-ipad',
     children: [
       {
         title: 'Guest Queue',
@@ -31,6 +31,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
       }, {
         title: 'Estimated Wait Time',
         link: '/pages/components/notifications',
+      },
+    ],
+  },
+  {
+    title: 'Seating',
+    icon: 'fa fa-table',
+    children: [
+      {
+        title: 'Mobile Phone Number',
+        link: '/pages/seating/mobile-phone-number',
+      },
+      {
+        title: 'Reward Card',
+        link: '/pages/seating/reward-card',
       },
     ],
   },

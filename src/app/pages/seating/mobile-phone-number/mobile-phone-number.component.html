@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>Seat Guest via Mobile Check-In</nb-card-header>
+      <nb-card-body>
+        <toaster-container [toasterconfig]="config"></toaster-container>
+        <form #checkInForm="ngForm">
+          <div class="form-group">
+            <input #input id="mobilePhoneNumber" class="form-control" name="mobilePhoneNumber" type="text" [(ngModel)]="completeReservationRequest.idField" placeholder="Mobile Phone Number" required/>
+          </div>
+          <br />
+          <button type="submit" class="btn btn-primary" (click)="complete()" [disabled]="buttonSubmitted || !checkInForm.form.valid" ng-disabled="buttonSubmitted || !checkInForm.form.valid">Submit</button>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

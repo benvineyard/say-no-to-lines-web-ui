@@ -17,6 +17,9 @@ const routes: Routes = [{
     path: 'notifications',
     loadChildren: './notifications/notifications.module#NotificationsModule',
   }, {
+    path: 'seating',
+    loadChildren: './seating/seating.module#SeatingModule',
+  }, {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',

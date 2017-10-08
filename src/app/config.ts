@@ -3,22 +3,24 @@ function makeAppConfig() {
 	const date = new Date();
 	const year = date.getFullYear();
 
+	// LOCAL
+	// const AppConfig = {
+	// 	productLink: 'http://SayNoToLines.com',
+	// 	checkInSvcRemoteUrl: 'http://localhost:3000/v1/buffet/reservation',
+	// 	completeSingleReservationSvcRemoteUrl: 'https://localhost:3000/v1/buffet/completesingle',
+	// 	getReservationQueueSvcRemoteUrl: 'https://localhost:3000/v1/buffet/peek',
+	// 	finalizeReservationsSvcRemoteUrl: 'https://localhost:3000/v1/buffet/complete',
+	// 	mgmBuffetGuestsListName: `mgmBuffetGuests`,
+	// 	mgmBuffetGuestsGetQueueCount: 10,
+	// };
+
+	// PRODUCTION
 	const AppConfig = {
-		brand: 'Say No To Lines',
-		user: 'amber',
-		year,
-		layoutBoxed: false,               // true, false
-		navCollapsed: false,              // true, false
-		navBehind: false,                 // true, false
-		fixedHeader: true,                // true, false
-		sidebarWidth: 'middle',           // small, middle, large
-		theme: 'light',                   // light, gray, dark
-		colorOption: '34',                // 11,12,13,14,15,16; 21,22,23,24,25,26; 31,32,33,34,35,36
-		AutoCloseMobileNav: true,         // true, false. Automatically close sidenav on route change (Mobile only)
 		productLink: 'http://SayNoToLines.com',
-		checkInSvcRemoteUrl: 'https://reservation.saynotolines.com/v1/buffet/reservation',
-		getReservationQueueSvcRemoteUrl: 'https://reservation.saynotolines.com/v1/buffet/peek',
-		finalizeReservationsSvcRemoteUrl: 'https://reservation.saynotolines.com/v1/buffet/complete',
+		checkInSvcRemoteUrl: 'https://botvana-api-reservation.herokuapp.com/v1/buffet/reservation',
+		completeSingleReservationSvcRemoteUrl: 'https://botvana-api-reservation.herokuapp.com/v1/buffet/completesingle',
+		getReservationQueueSvcRemoteUrl: 'https://botvana-api-reservation.herokuapp.com/v1/buffet/peek',
+		finalizeReservationsSvcRemoteUrl: 'https://botvana-api-reservation.herokuapp.com/v1/buffet/complete',
 		mgmBuffetGuestsListName: `mgmBuffetGuests`,
 		mgmBuffetGuestsGetQueueCount: 10,
 	};
