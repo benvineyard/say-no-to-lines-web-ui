@@ -21,7 +21,7 @@ const routes: Routes = [{
     loadChildren: './seating/seating.module#SeatingModule',
   }, {
     path: '',
-    redirectTo: '/auth/login',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   }],
 }];
