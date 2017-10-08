@@ -1,8 +1,8 @@
 // tslint:disable:indent eofline
+import { environment } from '../../../environments/environment';
 import { ICompleteReservationRequest } from '../models/completeReservationRequest.model';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { APPCONFIG } from '../../config';
 import { CheckIn, ICheckIn } from '../models/checkIn.model';
 import { Observable } from 'rxjs/Rx';
 
@@ -20,7 +20,7 @@ export class CheckInService {
 
 	constructor(private http: Http) { }
 	// private instance variable to hold base url
-	private checkInSvcRemoteUrl = APPCONFIG.checkInSvcRemoteUrl;
+	private checkInSvcRemoteUrl = environment.checkInSvcRemoteUrl;
 
 	// Fetch all existing checkins
 	saveCheckIn(body: ICheckIn): Observable<CheckIn> {
@@ -43,7 +43,7 @@ export class CheckInService {
 		const options = new RequestOptions({ headers }); // Create a request option
 
 		// ...using POST request
-		return this.http.post(APPCONFIG.completeSingleReservationSvcRemoteUrl, body, options)
+		return this.http.post(environment.completeSingleReservationSvcRemoteUrl, body, options)
 			.map(this.extractData)
 			.catch((error: any) => Observable.throw('saveCheckIn()::Server error | ' + error));
 	}

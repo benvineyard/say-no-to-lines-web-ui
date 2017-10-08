@@ -10,4 +10,11 @@
 
 export const environment = {
   production: false,
+  productLink: 'http://SayNoToLines.com',
+  checkInSvcRemoteUrl: 'http://localhost:3000/v1/buffet/reservation',
+  completeSingleReservationSvcRemoteUrl: 'https://localhost:3000/v1/buffet/completesingle',
+  getReservationQueueSvcRemoteUrl: 'https://localhost:3000/v1/buffet/peek',
+  finalizeReservationsSvcRemoteUrl: 'https://localhost:3000/v1/buffet/complete',
+  mgmBuffetGuestsListName: `mgmBuffetGuests`,
+  mgmBuffetGuestsGetQueueCount: 10,
 };

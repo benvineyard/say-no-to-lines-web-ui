@@ -1,7 +1,7 @@
 // tslint:disable:indent eofline
+import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { APPCONFIG } from '../../config';
 import { IGuestInQueue } from '../models/guestsInQueue.model';
 import { Observable } from 'rxjs/Rx';
 
@@ -17,15 +17,15 @@ export class QueuedGuestsService {
 
 	constructor(private http: Http) { }
 	// private instance variable to hold base url
-	private getReservationQueueSvcRemoteUrl = APPCONFIG.getReservationQueueSvcRemoteUrl;
-	private finalizeReservationsSvcRemoteUrl = APPCONFIG.finalizeReservationsSvcRemoteUrl;
+	private getReservationQueueSvcRemoteUrl = environment.getReservationQueueSvcRemoteUrl;
+	private finalizeReservationsSvcRemoteUrl = environment.finalizeReservationsSvcRemoteUrl;
 	// Fetch all existing comments
 	getGuestsInQueue(): Observable<IGuestInQueue[]> {
 
 		const body = {
 			body: {
-				listName: APPCONFIG.mgmBuffetGuestsListName,
-				count: APPCONFIG.mgmBuffetGuestsGetQueueCount,
+				listName: environment.mgmBuffetGuestsListName,
+				count: environment.mgmBuffetGuestsGetQueueCount,
 			},
 		};
 
@@ -48,7 +48,7 @@ export class QueuedGuestsService {
 	// Finalize reservations
 	finalizeReservations(body: IGuestInQueue[]): Observable<IGuestInQueue[]> {
 		const parsedBody = {
-			listName: APPCONFIG.mgmBuffetGuestsListName,
+			listName: environment.mgmBuffetGuestsListName,
 			reservations: body,
 		};
 		const bodyString = JSON.stringify(parsedBody); // Stringify payload
