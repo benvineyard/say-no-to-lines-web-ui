@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './@core/utils/analytics.service';
 
 // Botvana Custom Services
-import { CheckInService } from './@core/data/checkIn.service';
+import { CheckInService } from './@core/data/checkin.service';
 
 
 @Component({
