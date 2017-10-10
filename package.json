@@ -21,7 +21,7 @@
     "e2e": "ng e2e",
     "prepush": "npm run lint:ci",
     "deploy": "now https://github.com/benvineyard/botvana-web-ui-2",
-    "preinstall": "npm install -g @angular/cli",
+    "preinstall": "npm i -g @angular/cli && npm i @angular/compiler-cli && npm i typescript",
     "heroku-postbuild": "ng build --aot -prod"
   },
   "dependencies": {
