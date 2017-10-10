@@ -32,7 +32,7 @@ import { DashboardComponent } from './dashboard.component';
 @NgModule({
   imports: [
     ThemeModule,
-    DashboardComponent
+    DashboardComponent,
   ],
   declarations: [
     DashboardComponent,
