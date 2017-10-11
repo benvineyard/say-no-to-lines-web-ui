@@ -20,7 +20,7 @@ import { NbThemeService } from '@nebular/theme';
 export class D3LineComponent implements OnDestroy {
   multi = [
     {
-      name: 'Germany',
+      name: 'Carded',
       series: [
         {
           name: '2010',
@@ -30,10 +30,18 @@ export class D3LineComponent implements OnDestroy {
           name: '2011',
           value: 8940,
         },
+        {
+          name: '2012',
+          value: 6940,
+        },
+        {
+          name: '2013',
+          value: 10040,
+        },
       ],
     },
     {
-      name: 'USA',
+      name: 'Uncarded',
       series: [
         {
           name: '2010',
@@ -43,18 +51,13 @@ export class D3LineComponent implements OnDestroy {
           name: '2011',
           value: 8270,
         },
-      ],
-    },
-    {
-      name: 'France',
-      series: [
         {
-          name: '2010',
-          value: 5002,
+          name: '2012',
+          value: 7070,
         },
         {
-          name: '2011',
-          value: 5800,
+          name: '2013',
+          value: 9940,
         },
       ],
     },
@@ -63,9 +66,9 @@ export class D3LineComponent implements OnDestroy {
   showXAxis = true;
   showYAxis = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = 'Guest Status';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = 'Total Revenue (x1000)';
   colorScheme: any;
   themeSubscription: any;
 

@@ -1,4 +1,3 @@
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
@@ -14,9 +13,7 @@ const PAGES_COMPONENTS = [
     PagesRoutingModule,
     ThemeModule,
   ],
-  declarations: [
-    ...PAGES_COMPONENTS,
-  ],
+  declarations: [...PAGES_COMPONENTS],
 })
 export class PagesModule {
 }

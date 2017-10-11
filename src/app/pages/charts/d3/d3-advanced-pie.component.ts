@@ -13,16 +13,12 @@ import { NbThemeService } from '@nebular/theme';
 export class D3AdvancedPieComponent implements OnDestroy {
   single = [
     {
-      name: 'Germany',
+      name: 'Carded',
       value: 8940000,
     },
     {
-      name: 'USA',
+      name: 'Uncarded',
       value: 5000000,
-    },
-    {
-      name: 'France',
-      value: 7200000,
     },
   ];
   colorScheme: any;
