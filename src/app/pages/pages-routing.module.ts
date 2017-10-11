@@ -52,7 +52,7 @@ const components = [
   declarations: [
     ...components,
     DashboardComponent,
-    D3Component
+    D3Component,
   ],
 })
 export class PagesRoutingModule {
