@@ -9,7 +9,7 @@ const routes: Routes = [{
   component: PagesComponent,
   children: [{
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
   }, {
     path: 'checkin',
     loadChildren: './checkin/checkin.module#CheckinModule',
@@ -30,8 +30,8 @@ const routes: Routes = [{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
   declarations: [
-    DashboardComponent
-  ]
+    DashboardComponent,
+  ],
 })
 export class PagesRoutingModule {
 }
