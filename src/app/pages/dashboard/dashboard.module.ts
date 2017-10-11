@@ -26,7 +26,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 // import { EchartsAreaStackComponent } from '../charts/echarts/echarts-area-stack.component';
 // import { EchartsBarAnimationComponent } from '../charts/echarts/echarts-bar-animation.component';
 // import { EchartsRadarComponent } from '../charts/echarts/echarts-radar.component';
-import { DashboardComponent } from './dashboard.component';
+// import { DashboardComponent } from './dashboard.component';
 
 
 @NgModule({
@@ -34,7 +34,6 @@ import { DashboardComponent } from './dashboard.component';
     ThemeModule,
   ],
   declarations: [
-    DashboardComponent,
   ],
 })
 export class DashboardModule { }

@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CheckinModule } from './pages/checkin/checkin.module';
 import { NotificationsModule } from './pages/notifications/notifications.module'
 
 @NgModule({
@@ -30,7 +29,6 @@ import { NotificationsModule } from './pages/notifications/notifications.module'
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    CheckinModule,
     NotificationsModule,
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
