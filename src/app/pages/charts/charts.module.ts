@@ -48,8 +48,8 @@ const components = [
   EchartsRadarComponent,
 ];
 
-@NgModule({
-  imports: [ThemeModule, ChartsRoutingModule, AngularEchartsModule, NgxChartsModule, ChartModule],
-  declarations: [...routedComponents, ...components],
-})
+// @NgModule({
+//   imports: [ThemeModule, ChartsRoutingModule, AngularEchartsModule, NgxChartsModule, ChartModule],
+//   declarations: [...routedComponents, ...components],
+// })
 export class ChartsModule {}
