@@ -36,7 +36,7 @@ const routes: Routes = [{
   component: PagesComponent,
   children: [{
     path: 'charts',
-    component: D3Component,
+    component: ChartjsComponent,
   }, {
     path: 'checkin',
     loadChildren: './checkin/checkin.module#CheckinModule',

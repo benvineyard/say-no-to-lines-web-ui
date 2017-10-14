@@ -19,9 +19,9 @@ export class ChartjsPieComponent implements OnDestroy {
       const chartjs: any = config.variables.chartjs;
 
       this.data = {
-        labels: ['Download Sales', 'In-Store Sales', 'Mail Sales'],
+        labels: ['Uncarded', 'Carded'],
         datasets: [{
-          data: [300, 500, 100],
+          data: [this.random(), this.random()],
           backgroundColor: [colors.primaryLight, colors.infoLight, colors.successLight],
         }],
       };
@@ -58,5 +58,9 @@ export class ChartjsPieComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
+  }
+
+  private random() {
+    return Math.round(Math.random() * 100);
   }
 }
