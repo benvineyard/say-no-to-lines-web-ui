@@ -46,11 +46,13 @@ export class GuestsQueueComponent implements OnInit {
   });
 
   public settings = {
+    selectMode: 'multi',
     actions: {
         add: false,
     },
     add: false,
     edit: {
+      confirmSave: true,
       editButtonContent: '<i class="fa fa-envelope (click)="notify()"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
@@ -116,4 +118,13 @@ export class GuestsQueueComponent implements OnInit {
       console.log('foo');
     }
     public onDeleteConfirm(event: any) {}
+
+    public onSaveConfirm(event: any): void {
+      if (window.confirm('Are you sure you want to save?')) {
+        event.newData['name'] += ' + added in code';
+        event.confirm.resolve(event.newData);
+      } else {
+        event.confirm.reject();
+      }
+    }
 }
