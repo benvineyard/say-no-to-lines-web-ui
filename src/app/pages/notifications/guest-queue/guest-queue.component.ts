@@ -115,7 +115,6 @@ export class GuestsQueueComponent implements OnInit {
 
     public notify() {
       alert('foo');
-      console.log('foo');
     }
     public onDeleteConfirm(event: any) {}
 
