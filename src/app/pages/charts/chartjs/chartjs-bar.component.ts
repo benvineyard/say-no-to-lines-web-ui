@@ -21,11 +21,13 @@ export class ChartjsBarComponent implements OnDestroy {
       this.data = {
         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         datasets: [{
-          data: [this.random(), this.random(), this.random(), this.random(), this.random(), this.random(), this.random()],
+          data: [this.random(), this.random(), this.random(), this.random(), this.random(),
+            this.random(), this.random()],
           label: 'Carded',
           backgroundColor: NbColorHelper.hexToRgbA(colors.primaryLight, 0.8),
         }, {
-          data: [this.random(), this.random(), this.random(), this.random(), this.random(), this.random(), this.random()],
+          data: [this.random(), this.random(), this.random(), this.random(), this.random(),
+            this.random(), this.random()],
           label: 'Uncarded',
           backgroundColor: NbColorHelper.hexToRgbA(colors.infoLight, 0.8),
         }],

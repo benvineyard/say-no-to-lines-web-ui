@@ -51,25 +51,21 @@ export class GuestsQueueComponent implements OnInit {
     },
     add: false,
     edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
+      editButtonContent: '<i class="fa fa-envelope (click)="notify()"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
     },
     delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
+      deleteButtonContent: '<i class="nb-trash"></"i>',
       confirmDelete: true,
     },
     columns: {
       mobilePhoneNumber: {
-        title: 'Mobile Number',
-        type: 'text',
-      },
-      guestRewardCardId: {
-        title: 'Card Id',
+        title: 'Cell',
         type: 'text',
       },
       partySize: {
-        title: 'Party Size',
+        title: 'Size',
         type: 'text',
       },
       createdAt: {
@@ -77,7 +73,7 @@ export class GuestsQueueComponent implements OnInit {
         type: 'text',
       },
       lastNotificationSent: {
-        title: 'Last Sent',
+        title: 'Last',
         type: 'text',
       },
     },
@@ -108,12 +104,16 @@ export class GuestsQueueComponent implements OnInit {
                   guest.createdAt = guest.createdAt = moment().tz('America/Los_Angeles').format('M/d/YYYY h:m A');
                }
 
-               this.source.load(this.guestsInQueue);
+               this.source = new LocalDataSource(this.guestsInQueue);
             });
         } catch (error) {
             this.showToast('error', 'Guest Queue Retrieve Error', error.message);
         }
     }
 
+    public notify() {
+      alert('foo');
+      console.log('foo');
+    }
     public onDeleteConfirm(event: any) {}
 }
