@@ -10,3 +10,4 @@ export interface ICheckIn {
 	guestRewardCardId?: string;
 	mobilePhoneNumber?: string;
 }
+

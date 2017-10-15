@@ -1,4 +1,5 @@
 // tslint:disable:indent eofline
+import { IFinalizeReservationRequest } from '../models/finalizeReservationRequest.model';
 import { environment } from '../../../environments/environment';
 import { ICompleteReservationRequest } from '../models/completeReservationRequest.model';
 import { Injectable } from '@angular/core';
@@ -35,7 +36,6 @@ export class CheckInService {
 			.catch((error: any) => Observable.throw('saveCheckIn()::Server error | ' + error));
 	}
 
-	// Fetch all existing checkins
 	completeReservation(body: ICompleteReservationRequest): Observable<CheckIn> {
 
 		const bodyString = JSON.stringify(body); // Stringify payload
@@ -44,6 +44,18 @@ export class CheckInService {
 
 		// ...using POST request
 		return this.http.post(environment.completeSingleReservationSvcRemoteUrl, body, options)
+			.map(this.extractData)
+			.catch((error: any) => Observable.throw('saveCheckIn()::Server error | ' + error));
+	}
+
+	completeReservations(body: IFinalizeReservationRequest): Observable<CheckIn> {
+		
+		const bodyString = JSON.stringify(body); // Stringify payload
+		const headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+		const options = new RequestOptions({ headers }); // Create a request option
+
+		// ...using POST request
+		return this.http.post(environment.finalizeReservationsSvcRemoteUrl, body, options)
 			.map(this.extractData)
 			.catch((error: any) => Observable.throw('saveCheckIn()::Server error | ' + error));
 	}

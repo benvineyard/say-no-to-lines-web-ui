@@ -1,3 +1,7 @@
+import { tryCatch } from 'rxjs/util/tryCatch';
+import { IBaseHeader, IReservation } from '../../../@core/models/reservation.model';
+import { environment } from '../../../../environments/environment.prod';
+import { IFinalizeReservationRequest } from '../../../@core/models/finalizeReservationRequest.model';
 import { LocalDataSource } from 'ng2-smart-table';
 import { IGuestInQueue } from '../../../@core/models/guestsInQueue.model';
 import { QueuedGuestsService } from '../../../@core/data/notifications.service';
@@ -22,18 +26,18 @@ import * as moment from 'moment-timezone';
     }
   `],
 })
-export class GuestsQueueComponent implements OnInit {
+export class GuestsQueueComponent {
     public guestsInQueue: IGuestInQueue[];
 
     constructor(private _fb: FormBuilder,
                 private queuedGuestsService: QueuedGuestsService,
-                private toasterService: ToasterService) { };
-
-  ngOnInit() {
+                private toasterService: ToasterService) {
+      this.source = new LocalDataSource();
       this.loadGuestsInQueue();
-  }
+    };
 
-  source: LocalDataSource = new LocalDataSource();
+
+  source: LocalDataSource;
 
   public config = new ToasterConfig({
       positionClass: 'toast-top-right',
@@ -50,12 +54,11 @@ export class GuestsQueueComponent implements OnInit {
     actions: {
         add: false,
     },
-    add: false,
     edit: {
-      confirmSave: true,
-      editButtonContent: '<i class="fa fa-envelope (click)="notify()"></i>',
+      editButtonContent: '<i class="fa fa-envelope"></"i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmSave: true
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></"i>',
@@ -101,12 +104,12 @@ export class GuestsQueueComponent implements OnInit {
 
               for (const guest of this.guestsInQueue) {
                   const normalizedNumber = phoneFormatter.normalize(guest.mobilePhoneNumber);
-                  guest.mobilePhoneNumber = phoneFormatter.format(normalizedNumber, '(NNN) NNN-NNNN')
+                  guest.mobilePhoneNumber = phoneFormatter.format(normalizedNumber, 'NNN-NNN-NNNN')
                   guest.markedForNotification = false;
                   guest.createdAt = guest.createdAt = moment().tz('America/Los_Angeles').format('M/d/YYYY h:m A');
                }
 
-               this.source = new LocalDataSource(this.guestsInQueue);
+               this.source.load(this.guestsInQueue);
             });
         } catch (error) {
             this.showToast('error', 'Guest Queue Retrieve Error', error.message);
@@ -119,11 +122,64 @@ export class GuestsQueueComponent implements OnInit {
     public onDeleteConfirm(event: any) {}
 
     public onSaveConfirm(event: any): void {
+      let request: IFinalizeReservationRequest = null
       if (window.confirm('Are you sure you want to save?')) {
-        event.newData['name'] += ' + added in code';
-        event.confirm.resolve(event.newData);
+        const count = 0;
+        request = <IFinalizeReservationRequest>{
+          listName: environment.mgmBuffetGuestsListName,
+          reservations: <IReservation[]>[{}]
+        }
+        for (let guest of this.guestsInQueue) {
+          if (guest.markedForNotification === true) {
+              let reservation = <IReservation>{
+                header: <IBaseHeader>{
+                  originatorId: 'changme',
+                },
+                guestRewardCardId: guest.guestRewardCardId,
+                mobilePhoneNumber: guest.mobilePhoneNumber,
+                createdAt: guest.createdAt,
+                partySize: Number(guest.partySize),
+                completedAt: new Date(),
+                reservationUUID: undefined
+              };
+            
+            request.reservations.push(reservation);
+          }
+        }
+
+        if (request.reservations && request.reservations.length > 0){
+          try {
+            this.queuedGuestsService.finalizeReservations(request)
+            .subscribe((guests) => {
+
+            });
+          } catch (error) {
+            this.showToast('error', 'Guest Queue Send Message Error', error.message);
+          }
+          
+        }
       } else {
         event.confirm.reject();
+      }
+    }
+
+    public rowSelect(event: any): void {
+
+      if (event.data){
+        for (let reservation of this.guestsInQueue) {
+          if (event.data && event.data.createdAt === reservation.createdAt
+              && event.data.mobilePhoneNumber === reservation.mobilePhoneNumber
+              && event.data.partySize === reservation.partySize) {
+                event.data.markedForNotification = event.isSelected;
+  
+                break;
+              }
+        }
+      } else {
+        // This is a multi-select
+        for (let reservation of this.guestsInQueue) {
+          reservation.markedForNotification = !reservation.markedForNotification;
+        }
       }
     }
 }

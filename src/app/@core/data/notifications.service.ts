@@ -1,4 +1,5 @@
 // tslint:disable:indent eofline
+import { IFinalizeReservationRequest } from '../models/finalizeReservationRequest.model';
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
@@ -46,7 +47,7 @@ export class QueuedGuestsService {
 	}
 
 	// Finalize reservations
-	finalizeReservations(body: IGuestInQueue[]): Observable<IGuestInQueue[]> {
+	finalizeReservations(body: IFinalizeReservationRequest): Observable<IGuestInQueue[]> {
 		const parsedBody = {
 			listName: environment.mgmBuffetGuestsListName,
 			reservations: body,
