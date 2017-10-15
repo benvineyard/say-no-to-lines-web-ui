@@ -49,7 +49,7 @@ export class CheckInService {
 	}
 
 	completeReservations(body: IFinalizeReservationRequest): Observable<CheckIn> {
-		
+
 		const bodyString = JSON.stringify(body); // Stringify payload
 		const headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
 		const options = new RequestOptions({ headers }); // Create a request option

@@ -58,7 +58,7 @@ export class GuestsQueueComponent {
       editButtonContent: '<i class="fa fa-envelope"></"i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
-      confirmSave: true
+      confirmSave: true,
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></"i>',
@@ -127,11 +127,11 @@ export class GuestsQueueComponent {
         const count = 0;
         request = <IFinalizeReservationRequest>{
           listName: environment.mgmBuffetGuestsListName,
-          reservations: <IReservation[]>[{}]
+          reservations: <IReservation[]>[{}],
         }
-        for (let guest of this.guestsInQueue) {
+        for (const guest of this.guestsInQueue) {
           if (guest.markedForNotification === true) {
-              let reservation = <IReservation>{
+              const reservation = <IReservation>{
                 header: <IBaseHeader>{
                   originatorId: 'changme',
                 },
@@ -140,14 +140,13 @@ export class GuestsQueueComponent {
                 createdAt: guest.createdAt,
                 partySize: Number(guest.partySize),
                 completedAt: new Date(),
-                reservationUUID: undefined
+                reservationUUID: undefined,
               };
-            
             request.reservations.push(reservation);
           }
         }
 
-        if (request.reservations && request.reservations.length > 0){
+        if (request.reservations && request.reservations.length > 0) {
           try {
             this.queuedGuestsService.finalizeReservations(request)
             .subscribe((guests) => {
@@ -156,7 +155,6 @@ export class GuestsQueueComponent {
           } catch (error) {
             this.showToast('error', 'Guest Queue Send Message Error', error.message);
           }
-          
         }
       } else {
         event.confirm.reject();
@@ -165,19 +163,19 @@ export class GuestsQueueComponent {
 
     public rowSelect(event: any): void {
 
-      if (event.data){
-        for (let reservation of this.guestsInQueue) {
+      if (event.data) {
+        for (const reservation of this.guestsInQueue) {
           if (event.data && event.data.createdAt === reservation.createdAt
               && event.data.mobilePhoneNumber === reservation.mobilePhoneNumber
               && event.data.partySize === reservation.partySize) {
                 event.data.markedForNotification = event.isSelected;
-  
+
                 break;
               }
         }
       } else {
         // This is a multi-select
-        for (let reservation of this.guestsInQueue) {
+        for (const reservation of this.guestsInQueue) {
           reservation.markedForNotification = !reservation.markedForNotification;
         }
       }
