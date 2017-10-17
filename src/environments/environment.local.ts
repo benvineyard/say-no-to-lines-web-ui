@@ -19,4 +19,3 @@
     mgmBuffetGuestsListName: `mgmBuffetGuests`,
     mgmBuffetGuestsGetQueueCount: 10,
   };
-  

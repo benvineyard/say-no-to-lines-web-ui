@@ -2,9 +2,13 @@
   "name": "botvana-web-ui-2",
   "version": "1.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "8.x",
+    "npm": "5.x"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4200",
+    "start": "node server.js",
     "start:hmr": "ng serve --hmr",
     "start:aot": "ng serve --aot",
     "build": "rimraf dist && ng build",
