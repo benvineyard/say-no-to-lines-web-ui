@@ -99,7 +99,8 @@ export class GuestsQueueComponent {
   public loadGuestsInQueue() {
       try {
           this.queuedGuestsService.getGuestsInQueue()
-          .subscribe((questsInQueue) => {
+          .subscribe(
+            questsInQueue => {
               this.guestsInQueue = questsInQueue;
 
               for (const guest of this.guestsInQueue) {
@@ -110,7 +111,10 @@ export class GuestsQueueComponent {
                }
 
                this.source.load(this.guestsInQueue);
-            });
+            },
+          error => {
+            this.showToast('error', 'Guest Queue Retrieve Error', error.message);
+          });
         } catch (error) {
             this.showToast('error', 'Guest Queue Retrieve Error', error.message);
         }
@@ -127,7 +131,7 @@ export class GuestsQueueComponent {
         const count = 0;
         request = <IFinalizeReservationRequest>{
           listName: environment.mgmBuffetGuestsListName,
-          reservations: <IReservation[]>[{}],
+          reservations: <IReservation[]>[],
         }
         for (const guest of this.guestsInQueue) {
           if (guest.markedForNotification === true) {
@@ -149,8 +153,12 @@ export class GuestsQueueComponent {
         if (request.reservations && request.reservations.length > 0) {
           try {
             this.queuedGuestsService.finalizeReservations(request)
-            .subscribe((guests) => {
-
+            .subscribe(
+              guests => {
+                this.showToast('success', 'Finalize Reservations Successful', null);
+              },
+            error => {
+              this.showToast('error', 'Guest Queue Send Message Error', error.message);  
             });
           } catch (error) {
             this.showToast('error', 'Guest Queue Send Message Error', error.message);

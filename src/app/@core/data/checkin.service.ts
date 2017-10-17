@@ -33,7 +33,7 @@ export class CheckInService {
 		// ...using POST request
 		return this.http.post(this.checkInSvcRemoteUrl, body, options)
 			.map(this.extractData)
-			.catch((error: any) => Observable.throw('saveCheckIn()::Server error | ' + error));
+			.catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 	}
 
 	completeReservation(body: ICompleteReservationRequest): Observable<CheckIn> {
@@ -45,19 +45,7 @@ export class CheckInService {
 		// ...using POST request
 		return this.http.post(environment.completeSingleReservationSvcRemoteUrl, body, options)
 			.map(this.extractData)
-			.catch((error: any) => Observable.throw('saveCheckIn()::Server error | ' + error));
-	}
-
-	completeReservations(body: IFinalizeReservationRequest): Observable<CheckIn> {
-
-		const bodyString = JSON.stringify(body); // Stringify payload
-		const headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-		const options = new RequestOptions({ headers }); // Create a request option
-
-		// ...using POST request
-		return this.http.post(environment.finalizeReservationsSvcRemoteUrl, body, options)
-			.map(this.extractData)
-			.catch((error: any) => Observable.throw('saveCheckIn()::Server error | ' + error));
+			.catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 	}
 
 	private extractData(res: Response) {

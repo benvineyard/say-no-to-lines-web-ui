@@ -2,7 +2,7 @@
   <nb-card-header>
     Guest Notifications
   </nb-card-header>
-
+  <toaster-container [toasterconfig]="config"></toaster-container>
   <nb-card-body>
     <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (rowSelect)="rowSelect($event)" (editConfirm)="onSaveConfirm($event)">
     </ng2-smart-table>

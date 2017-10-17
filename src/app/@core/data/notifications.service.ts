@@ -9,8 +9,7 @@ import { Observable } from 'rxjs/Rx';
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class QueuedGuestsService {
@@ -39,7 +38,7 @@ export class QueuedGuestsService {
 			// ...and calling .json() on the response to return data
 			.map(this.extractData)
 			// ...errors if any
-			.catch((error: any) => Observable.throw(error || 'Server error'));
+			.catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 	}
 
 	private extractData(res: Response) {
@@ -48,20 +47,17 @@ export class QueuedGuestsService {
 
 	// Finalize reservations
 	finalizeReservations(body: IFinalizeReservationRequest): Observable<IGuestInQueue[]> {
-		const parsedBody = {
-			listName: environment.mgmBuffetGuestsListName,
-			reservations: body,
-		};
-		const bodyString = JSON.stringify(parsedBody); // Stringify payload
+
+		const bodyString = JSON.stringify(body); // Stringify payload
 		const headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
 		const options = new RequestOptions({ headers }); // Create a request option
 
 		// ...using POST request
-		return this.http.post(this.finalizeReservationsSvcRemoteUrl, parsedBody, options)
+		return this.http.post(this.finalizeReservationsSvcRemoteUrl, body, options)
 			// ...and calling .json() on the response to return data
 			.map(this.extractData)
 			// ...errors if any
-			.catch((error: any) => Observable.throw(error || 'Server error'));
+			.catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 	}
 };
 
