@@ -158,7 +158,7 @@ export class GuestsQueueComponent {
                 this.showToast('success', 'Finalize Reservations Successful', null);
               },
             error => {
-              this.showToast('error', 'Guest Queue Send Message Error', error.message);  
+              this.showToast('error', 'Guest Queue Send Message Error', error.message);
             });
           } catch (error) {
             this.showToast('error', 'Guest Queue Send Message Error', error.message);
